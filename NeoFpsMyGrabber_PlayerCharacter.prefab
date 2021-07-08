@@ -39,7 +39,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 444264055306155382}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d916a0d6ad81374ea5b9cba116753d2, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bc917d0af23ba142aa07cfd20de59ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   grabType: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
     parentObject: 0
   objectRotationSpeed: 3.5
   grabPos: {fileID: 8564975008514474622}
-  grabPosOffset: {x: 0, y: 0, z: 0}
+  grabPosOffset: {x: 0, y: 0, z: 2.5}
   breakDistance: 3
 --- !u!1 &7524024735477285266
 GameObject:
