@@ -8,8 +8,6 @@ This repository was created using Unity 2019.4 LTS.
 
 It requires the assets [NeoFPS](https://assetstore.unity.com/packages/templates/systems/neofps-150179?aid=1011l58Ft) and [MyGrabber](https://assetstore.unity.com/packages/tools/physics/mygrabber-3d-objects-grabber-189817?aid=1011l58Ft).
 
-Last updated with version 1.1.08 of NeoFPS and 2.3.0.1 of Emerald AI.
-
 ## Installation
 
 This integration example is intended to be dropped in to a fresh project along with NeoFPS and MyGrabber.
