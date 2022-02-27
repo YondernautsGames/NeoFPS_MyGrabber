@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿// Alternative version for use with the input system extension
+/*
+
+using System;
+using System.Collections;
 using UnityEngine;
 using NeoFPS.CharacterMotion;
-using System;
 using NeoFPS.CharacterMotion.MotionData;
 using NeoFPS.CharacterMotion.Parameters;
 using UnityEngine.Serialization;
@@ -11,7 +14,7 @@ using NeoSaveGames;
 namespace NeoFPS.Grabber
 {
     [RequireComponent(typeof(BaseCharacter))]
-    public class NeoFpsMyGrabberInputWithEncumbrance : NeoFpsMyGrabberInput, IMotionGraphDataOverride
+    public class NeoFpsMyGrabberInputSystemWithEncumbrance : NeoFpsMyGrabberInputSystem, IMotionGraphDataOverride
     {
         [Header("Encumbrance")]
 
@@ -112,3 +115,5 @@ namespace NeoFPS.Grabber
         #endregion
     }
 }
+
+*/

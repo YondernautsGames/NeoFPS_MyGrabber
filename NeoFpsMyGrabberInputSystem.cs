@@ -1,14 +1,18 @@
-﻿using UnityEngine;
+﻿// Alternative version for use with the input system extension
+/*
+
+using UnityEngine;
 using MyGrabber3D;
 using UnityEngine.Events;
 using NeoSaveGames.Serialization;
 using NeoSaveGames;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 namespace NeoFPS.Grabber
 {
     [RequireComponent (typeof(BaseCharacter))]
-    public class NeoFpsMyGrabberInput : CharacterInputBase, IMyGrabberInputHandler, INeoSerializableComponent
+    public class NeoFpsMyGrabberInputSystem : CharacterInputHandlerBase, IMyGrabberInputHandler, INeoSerializableComponent
     {
         [SerializeField, Tooltip("The maximum distance you can reach forwards to grab an object.")] 
 		private float m_MaxReach = 3.5f;
@@ -57,25 +61,6 @@ namespace NeoFPS.Grabber
                 }
             }
 		}
-				
-		private Rigidbody m_GrabTarget = null;
-		public Rigidbody grabTarget
-        {
-			get { return m_GrabTarget; }
-			private set
-            {
-				if (m_GrabTarget != value)
-                {
-					if (m_GrabTarget != null)
-						RemoveGrabTarget(m_GrabTarget);
-					
-					m_GrabTarget = value;
-					
-					if (m_GrabTarget != null)
-						AddGrabTarget(m_GrabTarget);
-                }
-            }
-		}
 
 		public MyGrabber myGrabber
         {
@@ -112,16 +97,6 @@ namespace NeoFPS.Grabber
                 }
             }
         }
-		
-		protected virtual void RemoveGrabTarget(Rigidbody rb)
-		{
-			// Disable highlight here
-		}
-		
-		protected virtual void AddGrabTarget(Rigidbody rb)
-		{
-			// Enable highlight here
-		}
 
 		void OnValidate()
         {
@@ -155,7 +130,7 @@ namespace NeoFPS.Grabber
 					grabState = GrabState.Grabbed;
 			}
 		}
-		
+
 		protected override void UpdateInput()
 		{
 			if (!myGrabber.enabled)
@@ -174,41 +149,35 @@ namespace NeoFPS.Grabber
 						{
 							Debug.DrawLine(Camera.main.transform.position, m_HitInfo.point, Color.red);
 							grabState = GrabState.ValidTarget;
-							grabTarget = m_HitInfo.rigidbody;
 						}
 						else
-						{
 							grabState = GrabState.TargetTooHeavy;
-							grabTarget = null;
-						}
 					}
 					else
-					{
 						grabState = GrabState.Inactive;
-						grabTarget = null;
-					}
 
 					// Reset tick timer
 					m_TickTimer = m_TickInterval;
                 }
 
 				// Check for input & grab if valid target
-				if (grabState == GrabState.ValidTarget && GetButtonDown(FpsInputButton.PickUp))
+				if (grabState == GrabState.ValidTarget && GetButtonDown(NeoFpsNewInputManager.controls.Interaction.PickUp))
 					myGrabber.GrabObject(m_HitInfo.collider.gameObject);
 			}
 			else
 			{
-				grabTarget = null;
-				
 				// Rotate the object
-				if (GetButton(FpsInputButton.SecondaryFire))
+				if (GetButton(NeoFpsNewInputManager.controls.Combat.SecondaryFire))
 				{
 					// Lock camera
 					cameraInputs = false;
-
+					var lookVector = NeoFpsNewInputManager.isGamepadConnected ? NeoFpsNewInputManager.controls.Movement.AnalogueLook.ReadValue<Vector2>() : NeoFpsNewInputManager.controls.Movement.MouseLook.ReadValue<Vector2>();
+					var LookAxis = NeoFpsNewInputManager.isGamepadConnected ? Gamepad.current.rightStick.ReadValue() : Mouse.current.position.ReadValue();
+					
+					
 					// Get mouse & analog
-					float x = GetAxis(FpsInputAxis.MouseX) * FpsSettings.input.horizontalMouseSensitivity + GetAxis(FpsInputAxis.LookX) * m_AnalogRotateRate * Time.deltaTime;
-					float y = GetAxis(FpsInputAxis.MouseY) * FpsSettings.input.verticalMouseSensitivity + GetAxis(FpsInputAxis.LookY) * m_AnalogRotateRate * Time.deltaTime;
+					float x = LookAxis.x * FpsSettings.input.horizontalMouseSensitivity + lookVector.x * m_AnalogRotateRate * Time.deltaTime;
+					float y = LookAxis.y * FpsSettings.input.verticalMouseSensitivity + lookVector.y * m_AnalogRotateRate * Time.deltaTime;
 
 					// Rotate
 					myGrabber.RotateObject(x, y);
@@ -220,11 +189,11 @@ namespace NeoFPS.Grabber
 				}
 
                 // Check for throw input
-                if (GetButtonDown(FpsInputButton.PrimaryFire))
+                if (GetButtonDown(NeoFpsNewInputManager.controls.Combat.PrimaryFire))
                     myGrabber.ThrowObject();
 
                 // Check for release input
-                if (GetButtonDown(FpsInputButton.PickUp))
+                if (GetButtonDown(NeoFpsNewInputManager.controls.Interaction.PickUp))
 					myGrabber.ReleaseObject();
 			}
 		}
@@ -358,3 +327,5 @@ namespace NeoFPS.Grabber
 		#endregion
 	}
 }
+
+*/
